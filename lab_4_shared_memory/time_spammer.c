@@ -1,21 +1,9 @@
-#include <time.h>
-#include <error.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/ipc.h>
-#include <sys/shm.h>
-#include <sys/types.h>
+#include "time_config.h"
 
-#define FILE_KEY "key"
-//
-#define MEMORY_SIZE 27
-
-const char * time_wrap;
+char * time_wrap;
 
 void spam();
 void init();
-int get_key();
 
 int main (int argc, char * argv[]) {
     init();
@@ -26,30 +14,23 @@ void init() {
     key_t key = get_key();
     int shm_id;
 
-    printf("Ket: %lld\n", key);
-
     if ((shm_id = shmget(key, MEMORY_SIZE, IPC_CREAT | 0666)) == -1) {
         perror("Shared memory get");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((time_wrap = shmat(shm_id, time_wrap, 0)) == (char *) -1) {
+        perror("Shmat");
         exit(EXIT_FAILURE);
     }
 }
 
 void spam() {
+    struct tm timeval;
     while(1) {
         time_t timer = time(0);
-        struct tm timeval = *localtime(&timer);
+        timeval = *localtime(&timer);
+        sprintf(time_wrap, "%.2d:%.2d:%.2d", timeval.tm_hour, timeval.tm_min, timeval.tm_sec);
+        sleep(1);
     }
-}
-
-int get_key() {
-    FILE * fp;
-    key_t key = 0;
-
-    if ((fp = fopen(FILE_KEY, "r")) == NULL) {
-        perror("Open key file");
-        exit(EXIT_FAILURE);
-    }
-
-    fscanf(fp, "%lld", &key);
-    return key;
 }
