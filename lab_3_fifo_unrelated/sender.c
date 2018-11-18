@@ -7,6 +7,10 @@ int main (int argc, char * argv[]) {
     mkfifo(FIFO, 0777);
 
     int fd = open(FIFO, O_WRONLY);
+    if (fd == -1) {
+        printf("Something wrong with open fifo\n");
+        exit(EXIT_FAILURE);
+    }
     write_time(buffer);
     write(fd, buffer, BUFFER_SIZE);
     close(fd);
