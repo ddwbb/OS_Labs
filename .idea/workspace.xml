@@ -10,12 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be2cb332-7ba9-4025-bd08-f6c280ed940f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lab_3_fifo_pthread/receiver.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab_3_fifo_unrelated/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/lab_3_fifo_unrelated/makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab_3_fifo_unrelated/reciever.c" beforeDir="false" afterPath="$PROJECT_DIR$/lab_3_fifo_unrelated/receiver.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab_4_shared_memory/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4_shared_memory/makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab_4_shared_memory/reciever.c" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4_shared_memory/receiver.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab_4_semaphores/spammer.c" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4_semaphores/spammer.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab_4_semaphores/spammer.exe" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4_semaphores/spammer.exe" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +37,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Makefile" value="1" />
-          <entry key="c" value="25" />
+          <entry key="c" value="26" />
           <entry key="generated" value="2" />
           <entry key="h" value="2" />
           <entry key="key" value="1" />
@@ -49,13 +46,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="ObjectiveC" value="27" />
+          <entry key="ObjectiveC" value="28" />
           <entry key="PLAIN_TEXT" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="c" value="5174" />
+          <entry key="c" value="5181" />
           <entry key="key" value="4" />
           <entry key="makefile" value="27" />
         </counts>
@@ -63,7 +60,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Doxygen file" value="1" />
-          <entry key="ObjectiveC" value="5173" />
+          <entry key="ObjectiveC" value="5180" />
           <entry key="PLAIN_TEXT" value="31" />
         </counts>
       </usages-collector>
@@ -76,17 +73,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab_4_semaphores/spammer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="7" selection-end-column="22" />
+            <state relative-caret-position="273">
+              <caret line="64" column="51" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab_4_semaphores/connector.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+            <state relative-caret-position="426">
+              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -98,6 +95,29 @@
               <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="19" selection-end-column="5" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lab_4_shared_memory/time_config.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lab_4_shared_memory/time_config.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lab_2_generate_file/main.c">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -129,6 +149,7 @@
         <option value="$PROJECT_DIR$/lab_3_fifo_pthread/sender.c" />
         <option value="$PROJECT_DIR$/lab_4_semaphores/spammer.c" />
         <option value="$PROJECT_DIR$/lab_4_semaphores/connector.c" />
+        <option value="$PROJECT_DIR$/lab_2_generate_file/main.c" />
       </list>
     </option>
   </component>
@@ -156,6 +177,11 @@
             <path>
               <item name="OS_Labs" type="b2602c69:ProjectViewProjectNode" />
               <item name="OS_Labs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OS_Labs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OS_Labs" type="462c0819:PsiDirectoryNode" />
+              <item name="lab_2_generate_file" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OS_Labs" type="b2602c69:ProjectViewProjectNode" />
@@ -220,7 +246,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27951000" />
+    <option name="totallyTimeSpent" value="28130000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -276,13 +302,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generated" />
-    <entry file="file://$PROJECT_DIR$/lab_2_generate_file/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lab_2_select/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -375,8 +394,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lab_4_shared_memory/time_config.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="51">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -388,7 +407,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lab_4_shared_memory/time_config.c">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lab_3_pipe/main.c">
       <provider selected="true" editor-type-id="text-editor">
@@ -413,17 +436,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lab_4_semaphores/spammer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="7" selection-end-column="22" />
+        <state relative-caret-position="273">
+          <caret line="64" column="51" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lab_4_semaphores/connector.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+        <state relative-caret-position="426">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab_2_generate_file/main.c">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
