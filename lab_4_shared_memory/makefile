@@ -1,15 +1,15 @@
 CC = gcc
 CFLAGS = -c -Wall
-EXECUTABLE = reciever spammer
+EXECUTABLE = receiver spammer
 CONFIG_SOURCE = time_config.c
 SPAM_SOURCES = $(CONFIG_SOURCE) time_spammer.c
 SPAM_OBJECTS = $(SPAM_SOURCES:.c=.o)
-RECV_SOURCES = $(CONFIG_SOURCE) reciever.c
+RECV_SOURCES = $(CONFIG_SOURCE) receiver.c
 RECV_OBJECTS = $(RECV_SOURCES:.c=.o)
 
 all: $(EXECUTABLE)
 
-reciever: $(RECV_OBJECTS)
+receiver: $(RECV_OBJECTS)
 	$(CC) $(RECV_OBJECTS) -o $@
 
 spammer: $(SPAM_OBJECTS)
@@ -19,4 +19,4 @@ spammer: $(SPAM_OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o reciever spammer *.exe
+	rm -rf *.o receiver spammer *.exe
