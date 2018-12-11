@@ -23,9 +23,9 @@ int main(int argc, char * argv[]) {
     pthread_create(&receiver, NULL, receive_thread, NULL);
     scanf("%c", &input);
     if (input) {
-        //pthread_cancel(receiver);
-        //close(fd);
-        //exit(EXIT_SUCCESS);
+        pthread_cancel(receiver);
+        close(fd);
+        exit(EXIT_SUCCESS);
         return 0;
     }
 }
