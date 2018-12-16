@@ -31,6 +31,8 @@ int main() {
     pthread_cancel(sender);
     pthread_cancel(receiver);
 
+    pthread_mutex_unlock(&mutex);
+    printf("Unlocked\n");
     pthread_mutex_destroy(&mutex);
 }
 
@@ -44,8 +46,8 @@ void * thread_send() {
             timeval = *localtime(&timer);
             sprintf(buffer, "%.2d:%.2d:%.2d", timeval.tm_hour, timeval.tm_min, timeval.tm_sec);
             sleep(1);
-            pthread_mutex_unlock(&mutex);
             printf("Unlocked\n");
+            pthread_mutex_unlock(&mutex);
         }
     }
 }
@@ -55,8 +57,9 @@ void * thread_receive() {
         if (!pthread_mutex_lock(&mutex)) {
             printf("Locked\n");
             printf("Time: %s\n", buffer);
-            pthread_mutex_unlock(&mutex);
             printf("Unlocked\n");
+            pthread_mutex_unlock(&mutex);
+            usleep(500000);
         }
     }
 }

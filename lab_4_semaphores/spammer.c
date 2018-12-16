@@ -30,7 +30,6 @@ int main(int argc, char * argv[]) {
         } else {
             spam();
             kill(pid, SIGTERM);
-            unlock_semaphore();
         }
     } else {
         spam();

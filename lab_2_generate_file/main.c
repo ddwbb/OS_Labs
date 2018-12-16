@@ -83,7 +83,7 @@ void move () {
     int fd_in, fd_out;
     char * buffer = (char *)calloc(BLOCK_SIZE, sizeof(char));
 
-    if ((fd_in = open(get_path(args.base), O_RDWR | O_TEXT, S_IWRITE | S_IREAD)) == -1) {
+    if ((fd_in = open(get_path(args.base), O_RDWR, S_IWRITE | S_IREAD)) == -1) {
         perror("Cannot open input file");
         exit(EXIT_FAILURE);
     }
