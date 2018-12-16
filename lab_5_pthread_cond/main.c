@@ -6,7 +6,7 @@
 
 #define COUNTER_MAX 10
 
-int data_counter;
+int data_counter = 0;
 
 pthread_mutex_t mutex;
 pthread_cond_t condition;
