@@ -5,6 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <sys/types.h>
 
 #define FILE_SIZE 314572800
@@ -28,13 +29,14 @@ int main (int argc, char * argv[]) {
     init(argc, argv);
     if (fork()) {
         generate();
+        int status;
+        wait(&status);
+        time_t _end = time(0);
+        printf("Total work time: %lld\n", (long long)(_end - _start));
     } else {
+        sleep(1);
         move();
     }
-    //generate();
-    //move();
-    time_t _end = time(0);
-    printf("Total work time: %lld\n", (long long)(_end - _start));
 }
 
 void init (int argc, char * argv []) {
@@ -69,9 +71,8 @@ void generate () {
         exit(EXIT_FAILURE);
     }
 
+    fill_buffer(buffer);
     for (int i = 0; i < FILE_SIZE / BLOCK_SIZE; i++) {
-
-        fill_buffer(buffer);
         write(fd, buffer, BLOCK_SIZE);
     }
 
@@ -89,12 +90,12 @@ void move () {
     int fd_in, fd_out;
     char * buffer = (char *)calloc(BLOCK_SIZE, sizeof(char));
 
-    if ((fd_in = open(get_path(args.base), O_RDWR, S_IREAD)) == -1) {
+    if ((fd_in = open(get_path(args.base), O_RDWR)) == -1) {
         perror("Cannot open input file");
         exit(EXIT_FAILURE);
     }
 
-    if ((fd_out = open(get_path(args.path), O_RDWR | O_CREAT, S_IWRITE)) == -1) {
+    if ((fd_out = open(get_path(args.path), O_RDWR | O_CREAT, S_IWRITE | S_IREAD)) == -1) {
         perror("Cannot open output file");
         exit(EXIT_FAILURE);
     }
@@ -103,7 +104,7 @@ void move () {
 
     for (int i = 0; i < FILE_SIZE / BLOCK_SIZE; i++) {
         data_count = read(fd_in, buffer, BLOCK_SIZE);
-        if (!data_count) continue;
+        if (!data_count) break;
         write(fd_out, buffer, BLOCK_SIZE);
     }
 
