@@ -38,20 +38,25 @@ void * thread_send() {
     time_t timer;
     struct  tm timeval;
     while(1) {
-        pthread_mutex_trylock(&mutex);
-        timer = time(0);
-        timeval = *localtime(&timer);
-        sprintf(buffer, "%.2d:%.2d:%.2d", timeval.tm_hour, timeval.tm_min, timeval.tm_sec);
-        sleep(1);
-        pthread_mutex_unlock(&mutex);
+        if (!pthread_mutex_lock(&mutex)) {
+            printf("Locked\n");
+            timer = time(0);
+            timeval = *localtime(&timer);
+            sprintf(buffer, "%.2d:%.2d:%.2d", timeval.tm_hour, timeval.tm_min, timeval.tm_sec);
+            sleep(1);
+            pthread_mutex_unlock(&mutex);
+            printf("Unlocked\n");
+        }
     }
 }
 
 void * thread_receive() {
     while(1) {
-        pthread_mutex_trylock(&mutex);
-        printf("Time: %s\n", buffer);
-        pthread_mutex_unlock(&mutex);
-        sleep(1);
+        if (!pthread_mutex_lock(&mutex)) {
+            printf("Locked\n");
+            printf("Time: %s\n", buffer);
+            pthread_mutex_unlock(&mutex);
+            printf("Unlocked\n");
+        }
     }
 }
