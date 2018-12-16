@@ -18,7 +18,8 @@ int main(int argc, char * argv[]) {
     pthread_t producer;
     pthread_t consumer;
 
-    condition = PTHREAD_COND_INITIALIZER;
+    pthread_mutex_init(&mutex, NULL);
+    pthread_cond_init(&condition, NULL);
 
     pthread_create(&consumer, NULL, consume, NULL);
     pthread_create(&producer, NULL, produce, NULL);

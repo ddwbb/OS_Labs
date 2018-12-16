@@ -1,2 +1,2 @@
 all:
-	gcc -o exec main.c -O0 -Wall
+	gcc -o exec main.c -O0 -Wall -lpthread

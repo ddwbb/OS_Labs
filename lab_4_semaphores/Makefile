@@ -13,4 +13,5 @@ spammer: spammer.c
 .c.o:
 	$(CC) $(CFLAGS) $< -o $@
 
-clean: rm -rf spammer connector *.exe
+clean:
+	rm -rf spammer connector *.exe

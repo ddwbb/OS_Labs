@@ -17,7 +17,7 @@ int main(int argc, char * argv[]) {
     pthread_t producer;
     pthread_t consumer;
 
-    rwlock = PTHREAD_RWLOCK_INITIALIZER;
+    pthread_rwlock_init(&rwlock, NULL);
 
     pthread_create(&consumer, NULL, consume, NULL);
     pthread_create(&producer, NULL, produce, NULL);
