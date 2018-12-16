@@ -5,6 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 
 #define FILE_SIZE 314572800
 #define BLOCK_SIZE 1024
@@ -25,8 +26,13 @@ int main (int argc, char * argv[]) {
 
     time_t _start = time(0);
     init(argc, argv);
-    generate();
-    move();
+    if (fork()) {
+        generate();
+    } else {
+        move();
+    }
+    //generate();
+    //move();
     time_t _end = time(0);
     printf("Total work time: %lld\n", (long long)(_end - _start));
 }
@@ -83,12 +89,12 @@ void move () {
     int fd_in, fd_out;
     char * buffer = (char *)calloc(BLOCK_SIZE, sizeof(char));
 
-    if ((fd_in = open(get_path(args.base), O_RDWR, S_IWRITE | S_IREAD)) == -1) {
+    if ((fd_in = open(get_path(args.base), O_RDWR, S_IREAD)) == -1) {
         perror("Cannot open input file");
         exit(EXIT_FAILURE);
     }
 
-    if ((fd_out = open(get_path(args.path), O_RDWR | O_CREAT, S_IWRITE | S_IREAD)) == -1) {
+    if ((fd_out = open(get_path(args.path), O_RDWR | O_CREAT, S_IWRITE)) == -1) {
         perror("Cannot open output file");
         exit(EXIT_FAILURE);
     }
