@@ -32,7 +32,6 @@ int main() {
     pthread_cancel(receiver);
 
     pthread_mutex_unlock(&mutex);
-    printf("Unlocked\n");
     pthread_mutex_destroy(&mutex);
 }
 
@@ -41,12 +40,12 @@ void * thread_send() {
     struct  tm timeval;
     while(1) {
         if (!pthread_mutex_lock(&mutex)) {
-            printf("Locked\n");
+            //printf("Locked\n");
             timer = time(0);
             timeval = *localtime(&timer);
             sprintf(buffer, "%.2d:%.2d:%.2d", timeval.tm_hour, timeval.tm_min, timeval.tm_sec);
             sleep(1);
-            printf("Unlocked\n");
+            //printf("Unlocked\n");
             pthread_mutex_unlock(&mutex);
         }
     }
@@ -55,9 +54,9 @@ void * thread_send() {
 void * thread_receive() {
     while(1) {
         if (!pthread_mutex_lock(&mutex)) {
-            printf("Locked\n");
+            //printf("Locked\n");
             printf("Time: %s\n", buffer);
-            printf("Unlocked\n");
+            //printf("Unlocked\n");
             pthread_mutex_unlock(&mutex);
             usleep(500000);
         }

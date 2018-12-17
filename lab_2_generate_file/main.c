@@ -19,15 +19,15 @@ struct program {
 void init(int, char * []);
 void generate();
 void fill_buffer(char *);
-char * get_path(char *);
+char * get_path(char *, char *);
 void move();
 void print_action_time(const char *);
 
 int main (int argc, char * argv[]) {
-
+    pid_t pid;
     time_t _start = time(0);
     init(argc, argv);
-    if (fork()) {
+    if ((pid = fork())) {
         generate();
         int status;
         wait(&status);
@@ -43,7 +43,7 @@ void init (int argc, char * argv []) {
     switch (argc) {
         case 1:
             args.base = "./";
-            args.path = "../";
+            args.path = "./";
             break;
         case 2:
             args.base = "./";
@@ -66,7 +66,7 @@ void generate () {
     int fd;
     char * buffer = (char *)calloc(BLOCK_SIZE, sizeof(char));
 
-    if ((fd = open(get_path(args.base), O_RDWR | O_CREAT, S_IWRITE | S_IREAD)) == -1) {
+    if ((fd = open(get_path(args.base, "from"), O_RDWR | O_CREAT, S_IWRITE | S_IREAD)) == -1) {
         perror("Cannot open file");
         exit(EXIT_FAILURE);
     }
@@ -90,12 +90,12 @@ void move () {
     int fd_in, fd_out;
     char * buffer = (char *)calloc(BLOCK_SIZE, sizeof(char));
 
-    if ((fd_in = open(get_path(args.base), O_RDWR)) == -1) {
+    if ((fd_in = open(get_path(args.base, "from"), O_RDWR)) == -1) {
         perror("Cannot open input file");
         exit(EXIT_FAILURE);
     }
 
-    if ((fd_out = open(get_path(args.path), O_RDWR | O_CREAT, S_IWRITE | S_IREAD)) == -1) {
+    if ((fd_out = open(get_path(args.path, "to"), O_RDWR | O_CREAT, S_IWRITE | S_IREAD)) == -1) {
         perror("Cannot open output file");
         exit(EXIT_FAILURE);
     }
@@ -114,10 +114,10 @@ void move () {
     print_action_time("File moved");
 }
 
-char * get_path (char * arg) {
+char * get_path (char * arg, char * name) {
     char * path = (char *)calloc(strlen(arg) + 10, sizeof(char));
     strcpy(path, arg);
-    strcat(path, "generated");
+    strcat(path, name);
     return path;
 }
 
