@@ -23,7 +23,7 @@ void look_through (char *, int);                        //Древовидный
 void look (char *);                                     //Информация о файлах текущего каталога: ls -l
 void view_file_full (char *, file_stat *);              //Вывод на экран полной информации конкретного файла
 void view_file_short (char *, file_stat *);             //Вывод на экран базовой информации конкретного файла
-char * make_full_path (char *, char *, char *);         //Склеивание полного пути для файла
+char * make_full_path (char *, char *);         //Склеивание полного пути для файла
 
 int main (int argc, char * argv[]) {
     program_argc * info = init(argc, argv);
@@ -102,7 +102,7 @@ void look_through (char * dir_name, int level) {
                     readdir_r(dir, &entry, &entry_ptr);
                     continue;
                 } else {
-                    char * path = make_full_path(path, dir_name, entry.d_name);
+                    char * path = make_full_path(dir_name, entry.d_name);
                     if (level) printf("%*s", level, " ");
                     if (stat(path, info)) {
                         perror("Cannot open file");
@@ -114,7 +114,7 @@ void look_through (char * dir_name, int level) {
                     free(path);
                 }
             } else {
-                char * path = make_full_path(path, dir_name, entry.d_name);
+                char * path = make_full_path(dir_name, entry.d_name);
                 if (level) printf("%*s", level, " ");
                 if (stat(path, info)) {
                     perror("Cannot open file");
@@ -149,7 +149,7 @@ void look (char * dir_name) {
                 readdir_r(dir, &entry, &entry_ptr);
                 continue;
             }
-            char * path = make_full_path(path, dir_name, entry.d_name);
+            char * path = make_full_path(dir_name, entry.d_name);
             if (stat(path, info)) {
                 perror("Cannot read file");
             } else {
@@ -185,14 +185,15 @@ void view_file_full (char * file_name, file_stat * info) {
     char oth_x = (S_IXOTH & info->st_mode) ? 'x' : '-';
 
     printf("%c%c%c%c%c%c%c%c%c%c\t%-10s", is_dir, usr_r, usr_w, usr_x, grp_r, grp_w, grp_x, oth_r, oth_w, oth_x, owner->pw_name);
-    printf("%-15s%-10jd%.2d:%.2d:%.2d\n", file_name, info->st_size, timer.tm_hour, timer.tm_min, timer.tm_sec);
+    printf("%-15s%-10zu%.2d:%.2d:%.2d\n", file_name, info->st_size, timer.tm_hour, timer.tm_min, timer.tm_sec);
 }
 
 void view_file_short (char * file_name, file_stat * info) {
-    printf("%s - %jd\n", file_name, info->st_size);
+    printf("%s - %zu\n", file_name, info->st_size);
 }
 
-char * make_full_path (char * full_path, char * parent_dir, char * dir) {
+char * make_full_path (char * parent_dir, char * dir) {
+    char * full_path;
     full_path = (char *)calloc(strlen(parent_dir) + strlen(dir) + 2, sizeof(char));
     strcpy(full_path, parent_dir);
     strcat(full_path, "/");
