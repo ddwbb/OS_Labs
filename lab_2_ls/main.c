@@ -185,11 +185,11 @@ void view_file_full (char * file_name, file_stat * info) {
     char oth_x = (S_IXOTH & info->st_mode) ? 'x' : '-';
 
     printf("%c%c%c%c%c%c%c%c%c%c\t%-10s", is_dir, usr_r, usr_w, usr_x, grp_r, grp_w, grp_x, oth_r, oth_w, oth_x, owner->pw_name);
-    printf("%-15s%-10zu%.2d:%.2d:%.2d\n", file_name, info->st_size, timer.tm_hour, timer.tm_min, timer.tm_sec);
+    printf("%-15s%-10lld%.2d:%.2d:%.2d\n", file_name, (long long)info->st_size, timer.tm_hour, timer.tm_min, timer.tm_sec);
 }
 
 void view_file_short (char * file_name, file_stat * info) {
-    printf("%s - %zu\n", file_name, info->st_size);
+    printf("%s - %lld\n", file_name, (long long)info->st_size);
 }
 
 char * make_full_path (char * parent_dir, char * dir) {
